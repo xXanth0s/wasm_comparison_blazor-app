@@ -1,0 +1,82 @@
+
+@using Microsoft.Extensions.Configuration
+@page "/table"
+@inject IConfiguration Configuration
+@inject HttpClient Http
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (persons == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Forename        </th>
+                <th>Surname         </th>
+                <th>Company         </th>
+                <th>Date Registered </th>
+                <th>Phone           </th>
+                <th>Personal Number </th>
+                <th>Street          </th>
+                <th>City            </th>
+                <th>Postal Code     </th>
+                <th>Country         </th>
+                <th>ID              </th>
+                <th>Is Active       </th>
+                <th>Date       </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in persons)
+            {
+                <tr>
+                    <td>@person.Surname        </td>
+                    <td>@person.Mail          </td>
+                    <td>@person.Company        </td>
+                    <td>@person.DateRegistered        </td>
+                    <td>@person.Phone         </td>
+                    <td>@person.PersonalNumber</td>
+                    <td>@person.Street        </td>
+                    <td>@person.City          </td>
+                    <td>@person.Postalcode        </td>
+                    <td>@person.Country        </td>
+                    <td>@person.ID            </td>
+                    <td>@person.Active        </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Person[] persons;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var apiUrl = Configuration["API_Url"];
+        persons = await Http.GetFromJsonAsync<Person[]>(String.Format("{0}/person", apiUrl));
+    }
+
+    public class Person
+    {
+
+        public string Surname { get; set; }
+        public string Mail { get; set; }
+        public string Company { get; set; }
+        public string DateRegistered { get; set; }
+        public string Phone { get; set; }
+        public string PersonalNumber { get; set; }
+        public string Street { get; set; }
+        public string City { get; set; }
+        public string Postalcode { get; set; }
+        public string Country { get; set; }
+        public string ID { get; set; }
+        public string Active { get; set; }
+
+    }
+}
