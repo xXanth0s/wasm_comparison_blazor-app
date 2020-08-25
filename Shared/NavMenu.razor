@@ -1,25 +1,18 @@
 ﻿
     <nav class="navbar navbar-light bg-light">
-        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-            Home
-        </NavLink>
-        <NavLink class="navbar-brand" href="counter">
-            ToDo
-        </NavLink>
-        <NavLink class="navbar-brand" href="fetchdata">
-            Tabelle
-        </NavLink>
+        <div class="container">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                Home
+            </NavLink>
+            <NavLink class="navbar-brand" href="todo">
+                ToDo
+            </NavLink>
+            <NavLink class="navbar-brand" href="videolist">
+                Videos
+            </NavLink>
+            <NavLink class="navbar-brand" href="table">
+                Tabelle
+            </NavLink>
+        </div>
     </nav>
 
-
-@code {
-
-    private bool collapseNavMenu = true;
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}

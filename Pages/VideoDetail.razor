@@ -1,0 +1,33 @@
+﻿@page "/videodetail/{ID}"
+
+@if (VideoData == null)
+{
+<div>
+    <div class="spinner-container">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>
+}
+else
+{
+
+<div>
+    <div class="row mb-3">
+        <div class="col">
+            <h4>@VideoData.title</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-7">
+            <video id="videoPlayer" controls>
+                <source src="@VideoUrl" type="video/mp4">
+            </video>
+        </div>
+        <div class="col-5">
+            <p>VideoData.description</p>
+        </div>
+    </div>
+</div>
+}

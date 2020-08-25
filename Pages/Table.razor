@@ -1,0 +1,39 @@
+@page "/table"
+
+<h1>Personen Liste</h1>
+
+<p>Dies ist eine Liste mit 2000 Einträgen welche sortiert werden kann</p>
+
+@if (persons == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th @onclick="@(e => sort("Forename"))">Forename        </th>
+                <th @onclick="@(e => sort("Surname"))">Surname         </th>
+                <th @onclick="@(e => sort("Company"))">Company         </th>
+                <th @onclick="@(e => sort("Mail"))">Mail         </th>
+                <th @onclick="@(e => sort("DateRegistered"))">Date Registered </th>
+                <th @onclick="@(e => sort("Phone"))">Phone           </th>
+                <th @onclick="@(e => sort("PersonalNumber"))">Personal Number </th>
+                <th @onclick="@(e => sort("Street"))">Street          </th>
+                <th @onclick="@(e => sort("City"))">City            </th>
+                <th @onclick="@(e => sort("PostalCode"))">Postal Code     </th>
+                <th @onclick="@(e => sort("Country"))">Country         </th>
+                <th @onclick="@(e => sort("ID"))">ID              </th>
+                <th @onclick="@(e => sort("Active"))">Is Active       </th>
+                <th @onclick="@(e => sort("Date"))">Date       </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in persons)
+            {
+                <PersonTableRow Person="person"></PersonTableRow>
+            }
+        </tbody>
+    </table>
+}

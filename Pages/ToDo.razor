@@ -1,0 +1,40 @@
+@page "/todo"
+
+
+    <div class="container">
+        <h1>To Do App</h1>
+
+
+        @if (tasks == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            @foreach (var toDoTask in tasks)
+            {
+                <ToDoTaskTile ToDoTask="@toDoTask" OnDelete="@deleteTask"></ToDoTaskTile>
+            }
+            <div class="mt-2">
+
+                @if (!isAddingTask)
+                {
+                    <button class="round-button float-right"
+                            title="Task hinzufügen"
+                            @onclick="openAddTask">
+                        +
+                    </button>
+                }
+                else
+                {
+                    <div>
+                        <input @bind="newTaskText" class="form-control" />
+                        <button class="btn btn-sm btn-primary float-right mt-2"
+                                @onclick="addTask">
+                            Task hinzufügen
+                        </button>
+                    </div>
+                }
+            </div>
+        }
+    </div>
