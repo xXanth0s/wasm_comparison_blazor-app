@@ -8,6 +8,8 @@ namespace BlazorApp.Services.Interfaces
     {
         public Task<List<T>> getAll();
 
+        public Task<T[]> getAllAsArray();
+
         public Task<T> getById(string id);
 
         public Task<Boolean> Delete(string id);

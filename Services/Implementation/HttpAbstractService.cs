@@ -34,6 +34,21 @@ namespace BlazorApp.Services.Implementation
             return result;
         }
 
+        public async Task<T[]> getAllAsArray()
+        {
+            T[] result = new T[0];
+            try
+            {
+                result = await Http.GetFromJsonAsync<T[]>(Endpoind);
+            }
+            catch
+            {
+                Console.WriteLine("Error whild fetching data for ", Endpoind);
+            }
+
+            return result;
+        }
+
         public async Task<T> getById(string id)
         {
             T result = default(T);

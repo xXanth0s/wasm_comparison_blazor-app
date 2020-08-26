@@ -17,7 +17,7 @@ namespace BlazorApp.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            persons = (await HttpService.getAll()).ToArray();
+            persons = await HttpService.getAllAsArray();
         }
 
         private void sort(string key)
