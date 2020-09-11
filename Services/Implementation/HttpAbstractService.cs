@@ -34,12 +34,13 @@ namespace BlazorApp.Services.Implementation
             return result;
         }
 
-        public async Task<T[]> getAllAsArray()
+        public async Task<T[]> getAllAsArray(Nullable<int> param = null)
         {
             T[] result = new T[0];
             try
             {
-                result = await Http.GetFromJsonAsync<T[]>(Endpoind);
+                string url = param != null ? String.Format("{0}/{1}", Endpoind, param) : Endpoind;
+                result = await Http.GetFromJsonAsync<T[]>(url);
             }
             catch
             {

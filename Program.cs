@@ -22,9 +22,12 @@ namespace BlazorApp
             builder.Services.AddSingleton<IHttpService<ToDoTask>, ToDoTaskHttpService>();
             builder.Services.AddSingleton<IHttpService<Person>, PersonHttpService>();
             builder.Services.AddSingleton<IHttpService<Video>, VideoHttpService>();
-            builder.Services.AddSingleton<IHttpService<SortableData>, SortableDataHttpService>();
+            builder.Services.AddSingleton<IHttpService<string>, SortableDataHttpService>();
+            builder.Services.AddSingleton<IHttpService<int>, SortableNumberHttpService>();
+            builder.Services.AddSingleton<IHttpService<Result>, ResultHttpService>();
             builder.Services.AddSingleton<IQuickSortService<Person>, QuickSortService<Person>>();
-            builder.Services.AddSingleton<IQuickSortService<SortableData>, QuickSortServiceDetailed>();
+            builder.Services.AddSingleton<IQuickSortService<string>, QuickSortServiceDetailed>();
+            builder.Services.AddSingleton<IQuickSortService<int>, QuickSortServiceNumber>();
 
             await builder.Build().RunAsync();
         }

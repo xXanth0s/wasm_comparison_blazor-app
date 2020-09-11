@@ -4,66 +4,65 @@ using System;
 
 namespace BlazorApp.Services.Implementation
 {
-    public class QuickSortServiceDetailed: IQuickSortService<SortableData>
+    public class QuickSortServiceDetailed: IQuickSortService<string>
 	{
-		public void sort(ref SortableData[] array, string key)
-		{
-			quicksort(0, array.Length - 1, ref array);
-		}
-		private void quicksort(int links, int rechts, ref SortableData[] daten)
-		{
-			if (links < rechts)
-			{
-				int teiler = teile(links, rechts, ref daten);
-				quicksort(links, teiler - 1, ref daten);
-				quicksort(teiler + 1, rechts, ref daten);
-			}
-		}
-		private int teile(int links, int rechts, ref SortableData[] daten) 
-		{
-			int i = links;
-			//Starte mit j links vom Pivotelement
-			int j = rechts - 1;
-			SortableData pivot = daten[rechts];
-			var pivotValue = pivot.ID;
-			
+        public void sort(ref string[] array, string key)
+        {
+            quickSortRecursive(ref array, 0, array.Length - 1);
+        }
 
-			do
-			{
-				//Suche von links ein Element, welches größer als das Pivotelement ist
-				while (String.Compare(daten[i].ID, pivotValue) <= 0 && i < rechts)
-				{
-					i += 1;
-				}
+        private string[] quickSortRecursive(ref string[] items, int left, int right)
+        {
+            var index = 0;
+            if (items.Length > 1)
+            {
+                index = partition(ref items, left, right); //index returned from partition
+                if (left < index - 1)
+                { //more elements on the left side of the pivot
+                    quickSortRecursive(ref items, left, index - 1);
+                }
+                if (index < right)
+                { //more elements on the right side of the pivot
+                    quickSortRecursive(ref items, index, right);
+                }
+            }
+            return items;
+        }
 
-				//Suche von rechts ein Element, welches kleiner als das Pivotelement ist
-				while (String.Compare(daten[j].ID, pivotValue) >= 0 && j > links) { 
-					j -= 1;
-				}
+        private void swap(ref string[] items, int leftIndex, int rightIndex)
+        {
+            var temp = items[leftIndex];
+            items[leftIndex] = items[rightIndex];
+            items[rightIndex] = temp;
+        }
 
-				if (i < j)
-				{
-					SortableData z = daten[i];
-					daten[i] = daten[j];
-					// tausche daten[i] mit daten[j]
-					daten[j] = z;
-				}
+        private int partition(ref string[] items, int left, int right)
+        {
+            var pivot = items[(right + left) / 2];
+            var leftPointer = left;
+            var rightPointer = right; //right pointer
+            while (leftPointer <= rightPointer)
+            {
+                while (String.Compare(items[leftPointer], pivot) < 0)
+                {
+                    leftPointer++;
+                }
+                while (String.Compare(items[rightPointer], pivot) > 0)
+                {
+                    rightPointer--;
+                }
+                if (leftPointer <= rightPointer)
+                {
+                    swap(ref items, leftPointer, rightPointer); //sawpping two elements
+                    leftPointer++;
+                    rightPointer--;
+                }
+            }
+            return leftPointer;
+        }
 
-			} while (i < j);
-			//solange i an j nicht vorbeigelaufen ist 
-
-			// Tausche Pivotelement (daten[rechts]) mit neuer endgültiger Position (daten[i])
-
-			if (String.Compare(daten[i].ID, pivotValue) > 0)
-			{
-				SortableData z = daten[i];
-				daten[i] = daten[rechts];
-				// tausche daten[i] mit daten[rechts]
-				daten[rechts] = z;
-			}
-			return i;
-		}
-	}
+    }
+}
 
 	
-}
+

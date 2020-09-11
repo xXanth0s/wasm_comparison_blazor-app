@@ -1,37 +1,39 @@
-﻿@page "/quicksort"
+﻿@page "/quicksortstring/{Count:int}/{AutoStart:bool}/{RunCount:int}/{IsJs:bool}"
 
 
 <div class="container">
-    <h4>Hier wird gemessen, wie lange der Quicksort Algorithmus zum sortieren von 300.000 Einträgen benötigt</h4>
-    @if (SortableDataArray != null)
+    <h1> Quicksort mit Strings</h1>
+    <h4>Hier wird gemessen, wie lange der Quicksort Algorithmus zum sortieren von @Count Einträgen benötigt</h4>
+    @if (_sortableDataArray != null)
     {
-        <div>
-            <button  @onclick="sort" disabled="@IsRunning" class="btn btn-primary">Start</button>
-            @if (IsRunning)
-            {
-                <p>Quicksort wird momentan ausgeführt. Bitte warten</p>
-            }
-            @if (IsFinished)
-            {
-                <div v-if="showResult" class="card">
-                    <div class="card-body">
-                        <p>Quicksort wurde beendet</p>
-                        <p>Benötigte Zeit @ElapsedTime</p>
-                    </div>
+<div>
+    <button @onclick="Sort" disabled="@_isRunning" class="btn btn-primary">Start With WebAssembly</button>
+    <button @onclick="SortJS" disabled="@_isRunning" class="btn btn-primary ml-2">Start With JavaScript</button>
+    @if (_isRunning)
+    {
+        <p>Quicksort wird momentan ausgeführt. Bitte warten</p>
+    }
+    @if (_isFinished)
+    {
+        <div v-if="showResult" class="card">
+            <div class="card-body">
+                <p>Quicksort wurde beendet</p>
+                <p>Benötigte Zeit @_elapsedTime</p>
+            </div>
 
-                    <div class="card-body">
-                        <p>Vorschau der ersten 1000 Elemente:</p>
+            <div class="card-body">
+                <p>Vorschau der ersten 1000 Elemente:</p>
 
-                        @foreach (var entry in Preview)
-                        {
-                            <p>
-                                <code>@entry.ID</code>
-                            </p>
-                        }
-                    </div>
-                </div>
-            }
+                @foreach (var entry in _preview)
+                {
+                    <p>
+                        <code>@entry</code>
+                    </p>
+                }
+            </div>
         </div>
+    }
+</div>
     }
     else
     {

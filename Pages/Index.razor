@@ -1,7 +1,42 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+<div class="container center-column">
+    <img style="width: 200px" src="/assets/blazor_logo.png">
+    <h2>
+        Analyse der Vor- und Nachteile von WebAssembly und traditionellem JavaScript bei der Entwicklung von Single
+        Page Applications
+    </h2>
+    <h4>
+        Blazor Application
+    </h4>
+    <p>
+        Mittels dieser Anwendung kann verglichen werden, ob WebAssembly ein adaquater Ersatz für traditionelle JavaScript Applikationen ist.
+        Hierfür wurden mehrere Funktionalitäten implementiert, welche ausgewertet werden.
+    </p>
+    <h3>To-Do App</h3>
+    <p>Um die Kommunikation mit einer API wurde eine To-Do App implementiert</p>
 
+    <NavLink class="navbar-brand" href="todo">Zur To-Do App</NavLink>
+    <h3>Video</h3>
+    <p>
+        Um zu prüfen ob visueller Content gleich gut angezeigt werden kann, wurde eine Video Mediathek implementiert
+    </p>
+    <NavLink class="navbar-brand" href="videolist">Zur Mediathek</NavLink>
+    <h3>Tabelle</h3>
+    <p>
+        Für einen Vergleich der Render Geschwindigkeit, wurde eine Tabelle mit 10.000 Einträgen implementiert
+    </p>
+    <NavLink class="navbar-brand" href="table">Zur Tabelle</NavLink>
+    <h3>Quick-Sort mit Strings</h3>
+    <p>
+        Um einen Geschwindigkeitsvergleich von WebAssembly und JavaScript zu prüfen, wird der Algorithmus Quicksort auf ein String Array
+    </p>
+    <NavLink class="navbar-brand" href="quicksort">Zu Quicksort</NavLink>
+    <h3>Quick-Sort mit Zahlen</h3>
+    <p>
+        Um einen Geschwindigkeitsvergleich von WebAssembly und JavaScript zu prüfen, wird der Algorithmus Quicksort auf ein Integer Array
+    </p>
+    <NavLink class="navbar-brand" href="quicksort">Zu Quicksort</NavLink>
+</div>
 
