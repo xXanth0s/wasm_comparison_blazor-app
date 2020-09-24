@@ -4,7 +4,7 @@ using System;
 
 namespace BlazorApp.Services.Implementation
 {
-    public class QuickSortServiceDetailed: IQuickSortService<string>
+    public class QuickSortServiceString: IQuickSortService<string>
 	{
         public void sort(ref string[] array, string key)
         {

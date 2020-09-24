@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BlazorApp.Pages
 {
-    public partial class Quicksort
+    public partial class QuicksortString
     {
 
         [Inject]
@@ -30,6 +30,8 @@ namespace BlazorApp.Pages
 
         [Inject]
         public IConfiguration Configuration { get; set; }
+        
+        [Inject] public IResultService ResultService { get; set; }
 
         [Parameter]
         public int RunCount { get; set; }  
@@ -85,7 +87,7 @@ namespace BlazorApp.Pages
             _isRunning = false;
             _isFinished = true;
             
-            saveReuslt(false);
+            ResultService.SaveResult(false, AutoStart, _elapsedTime, "string", Count, RunCount);
         }
         private async void SortJS()
         {
@@ -108,64 +110,7 @@ namespace BlazorApp.Pages
 
             base.StateHasChanged();
 
-            saveReuslt(true);
+            ResultService.SaveResult(true, AutoStart, _elapsedTime, "string", Count, RunCount);
         }
-
-        private void saveReuslt(Boolean isJs)
-        {
-            var framework = isJs ? "blazor_with_js" : "blazor";
-            
-            var result = new Result
-            {
-                count = Count,
-                framework = framework,
-                time = _elapsedTime,
-                sortType = "string",
-                browser = "safari_mac"
-            };
-            this.ResultHttpService.Insert(result);
-            
-            if (!AutoStart)
-            {
-                return;
-            }
-
-
-            int maxRunCount = Int16.Parse(Configuration["SORT_ITERATIONS"]);
-
-            if (RunCount < maxRunCount)
-            {
-                Console.WriteLine("Redirecting");
-                var url = String.Format("/quicksortstring/{0}/{1}/{2}/{3}", Count, true, ++RunCount, IsJs);
-
-                NavigationManager.NavigateTo(url);
-                
-                JSRuntime.InvokeAsync<string>("reloadPage", "");
-            }
-            else
-            {
-                var indexForNextElementCount = Array.IndexOf(elementCountCollection, Count) + 1;
-
-                if (indexForNextElementCount < elementCountCollection.Length)
-                {
-                    var nextCount = elementCountCollection[indexForNextElementCount];
-                    var url = String.Format("/quicksortstring/{0}/{1}/0/{2}", nextCount, true, isJs);
-
-                    NavigationManager.NavigateTo(url);
-
-                    JSRuntime.InvokeAsync<string>("reloadPage", "");
-                    
-                }
-                else if(!isJs)
-                {
-                    var nextCount = elementCountCollection[2];
-                    var url = String.Format("/quicksortstring/{0}/{1}/0/true", nextCount, true);
-
-                    NavigationManager.NavigateTo(url);
-
-                    JSRuntime.InvokeAsync<string>("reloadPage", "");
-                }
-            }
-        } 
     }
 }

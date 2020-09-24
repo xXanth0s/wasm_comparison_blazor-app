@@ -9,6 +9,6 @@ namespace BlazorApp.Services.Interfaces
     public interface IResultService
     {
 
-        public void SaveResult(Result result);
+        public void SaveResult(Boolean isJs, Boolean autoStart, long elapsedTime, string sortType, int count, int runCount);
     }
 }

@@ -14,16 +14,11 @@ namespace BlazorApp.Pages
     {
         [Inject] public IHttpService<int> HttpService { get; set; }
 
-        [Inject] public IHttpService<Result> ResultHttpService { get; set; }
-
         [Inject] public IQuickSortService<int> QuickSortService { get; set; }
 
-        [Inject] public NavigationManager NavigationManager { get; set; }
+        [Inject] public IResultService ResultService { get; set; }
 
         [Inject] public IJSRuntime JSRuntime { get; set; }
-
-        [Inject]
-        public IConfiguration Configuration { get; set; }
 
         [Parameter] public int RunCount { get; set; }
 
@@ -40,7 +35,6 @@ namespace BlazorApp.Pages
         private Boolean IsRunning = false;
         private long ElapsedTime = 0;
 
-        private readonly int[] elementCountCollection = {100000, 50000, 20000, 10000, 5000, 2000, 1000, 500};
 
         protected override async Task OnInitializedAsync()
         {
@@ -76,7 +70,7 @@ namespace BlazorApp.Pages
             IsRunning = false;
             IsFinished = true;
 
-            saveReuslt(false);
+            ResultService.SaveResult(false, AutoStart, ElapsedTime, "number", Count, RunCount);
         }
 
         private async void sortJS()
@@ -98,71 +92,7 @@ namespace BlazorApp.Pages
 
             base.StateHasChanged();
 
-            saveReuslt(true);
-        }
-
-        private void saveReuslt(Boolean isJs)
-        {
-            var framework = isJs ? "blazor_with_js" : "blazor";
-
-            var result = new Result
-            {
-                count = Count,
-                framework = framework,
-                time = ElapsedTime,
-                sortType = "number",
-                browser = "safari_mac"
-            };
-            this.ResultHttpService.Insert(result);
-
-            if (!AutoStart)
-            {
-                return;
-            }
-
-            int maxRunCount = Int16.Parse(Configuration["SORT_ITERATIONS"]);
-
-            if (RunCount < maxRunCount) {
-                Console.WriteLine("Redirecting");
-                var url = String.Format("/quicksortnumbers/{0}/{1}/{2}/{3}", Count, true, ++RunCount, isJs);
-
-                NavigationManager.NavigateTo(url);
-
-                JSRuntime.InvokeAsync<string>("reloadPage", "");
-            }
-            else
-            {
-                var indexForNextElementCount = Array.IndexOf(elementCountCollection, Count) + 1;
-
-                if (indexForNextElementCount < elementCountCollection.Length)
-                {
-                    var nextCount = elementCountCollection[indexForNextElementCount];
-                    var url = String.Format("/quicksortnumbers/{0}/{1}/0/{2}", nextCount, true, isJs);
-
-                    NavigationManager.NavigateTo(url);
-
-                    JSRuntime.InvokeAsync<string>("reloadPage", "");
-                    
-                }
-                else if(isJs)
-                {
-                    var nextCount = elementCountCollection[0];
-                    var url = String.Format("/quicksortnumbers/{0}/true/0/false", nextCount);
-
-                    NavigationManager.NavigateTo(url);
-
-                    JSRuntime.InvokeAsync<string>("reloadPage", "");
-                }
-                else
-                {
-                    var nextCount = elementCountCollection[0];
-                    var url = String.Format("/quicksortstring/{0}/true/0/false", nextCount);
-
-                    NavigationManager.NavigateTo(url);
-
-                    JSRuntime.InvokeAsync<string>("reloadPage", "");
-                }
-            }
+            ResultService.SaveResult(true, AutoStart, ElapsedTime, "number", Count, RunCount);
         }
     }
 }
