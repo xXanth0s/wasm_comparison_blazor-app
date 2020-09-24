@@ -25,21 +25,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c56f3a4-9cb6-4df9-a9c8-7b99267a5fb1" name="Default Changelist" comment="add missing files">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorApp.dir/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlazorApp.dir/.idea/contentModel.xml" afterDir="false" />
+    <list default="true" id="9c56f3a4-9cb6-4df9-a9c8-7b99267a5fb1" name="Default Changelist" comment="add Result service and readme">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorApp.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlazorApp.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Quicksort.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/QuicksortString.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Quicksort.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/QuicksortString.razor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/QuicksortNumbers.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/QuicksortNumbers.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Table.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Table.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Table.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Table.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Implementation/QuickSortService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Implementation/QuickSortServiceDetailed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Implementation/QuickSortServiceString.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/QuicksortString.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/QuicksortString.razor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Services/Implementation/ResultService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Implementation/ResultService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Interfaces/IResultService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Interfaces/IResultService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Components/PersonTable.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Components/PersonTable.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/Components/VideoTile.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Components/VideoTile.razor.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,14 +82,15 @@
         <option value="$PROJECT_DIR$/Pages/Quicksort.razor.cs" />
         <option value="$PROJECT_DIR$/Services/Implementation/QuickSortServiceString.cs" />
         <option value="$PROJECT_DIR$/Services/Interfaces/IResultService.cs" />
-        <option value="$PROJECT_DIR$/Pages/QuicksortNumbers.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/QuicksortString.razor.cs" />
         <option value="$PROJECT_DIR$/Program.cs" />
-        <option value="$PROJECT_DIR$/Services/Implementation/ResultService.cs" />
         <option value="$PROJECT_DIR$/Pages/Table.razor.cs" />
         <option value="$PROJECT_DIR$/Shared/Components/PersonTable.razor" />
         <option value="$PROJECT_DIR$/Pages/Table.razor" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/Shared/Components/VideoTile.razor.cs" />
+        <option value="$PROJECT_DIR$/Services/Implementation/ResultService.cs" />
+        <option value="$PROJECT_DIR$/Pages/QuicksortString.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/QuicksortNumbers.razor.cs" />
       </list>
     </option>
   </component>
@@ -184,7 +176,7 @@
       <workItem from="1599484222475" duration="1190000" />
       <workItem from="1599821806721" duration="802000" />
       <workItem from="1600030142852" duration="1351000" />
-      <workItem from="1600951450835" duration="2624000" />
+      <workItem from="1600951450835" duration="3556000" />
     </task>
     <task id="LOCAL-00001" summary="finalize page">
       <created>1599821839204</created>
@@ -200,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599821864206</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add Result service and readme">
+      <created>1600954095790</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600954095790</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,7 +223,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="finalize page" />
     <MESSAGE value="add missing files" />
-    <option name="LAST_COMMIT_MESSAGE" value="add missing files" />
+    <MESSAGE value="add Result service and readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Result service and readme" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2381" y="165" key="SettingsEditor" timestamp="1600031281105">

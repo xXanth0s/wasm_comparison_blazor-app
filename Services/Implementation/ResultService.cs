@@ -32,7 +32,6 @@ namespace BlazorApp.Services.Implementation
         public void SaveResult(Boolean isJs, Boolean autoStart, long elapsedTime, string sortType, int count,
             int runCount)
         {
-            Console.WriteLine("Saving result");
             var framework = isJs ? "blazor_with_js" : "blazor";
 
             var result = new Result
@@ -44,7 +43,6 @@ namespace BlazorApp.Services.Implementation
                 browser = "chrome"
             };
 
-            Console.WriteLine(result.ToString());
             this.ResultHttpService.Insert(result);
 
             if (!autoStart)
@@ -56,7 +54,6 @@ namespace BlazorApp.Services.Implementation
 
             if (runCount < maxRunCount)
             {
-                Console.WriteLine("Redirecting");
                 var url = String.Format("/quicksortnumbers/{0}/{1}/{2}/{3}", count, true, ++runCount, isJs);
 
                 NavigationManager.NavigateTo(url);

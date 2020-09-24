@@ -21,7 +21,6 @@ namespace BlazorApp.Shared.Components
                 {
                     return "";
                 }
-                Console.WriteLine(VideoData.id);
                 return String.Format("{0}video/thumbnail/{1}", Configuration["API_Url"], VideoData.id);
             }
         }

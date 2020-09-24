@@ -52,11 +52,9 @@ namespace BlazorApp.Pages
         private Boolean _isRunning = false;
         private long _elapsedTime = 0;
 
-        private readonly int[] elementCountCollection = {100000, 50000, 20000, 10000, 5000, 2000, 1000, 500};
         protected override async Task OnInitializedAsync()
         {
             _sortableDataArray = await HttpService.getAllAsArray(Count);
-            Console.WriteLine("data loaded");
             if (AutoStart)
             {
                 if (IsJs)
@@ -74,14 +72,12 @@ namespace BlazorApp.Pages
         {
             _isRunning = true;
             _isFinished = false;
-            Console.WriteLine("Sorting Quicksort started");
             var watch = Stopwatch.StartNew();
 
             QuickSortService.sort(ref _sortableDataArray, "ID");
             watch.Stop();
             _elapsedTime = watch.ElapsedMilliseconds;
 
-            Console.WriteLine("Sorting finished");
             _preview = _sortableDataArray.Take(100).ToArray();
 
             _isRunning = false;
@@ -93,16 +89,12 @@ namespace BlazorApp.Pages
         {
             _isRunning = true;
             _isFinished = false;
-            Console.WriteLine("Sorting startessd", _sortableDataArray);
             var watch = Stopwatch.StartNew();
-            
-            Console.WriteLine(_sortableDataArray.Length);
             
             var result = await JSRuntime.InvokeAsync<string[]>("quickSort",  _sortableDataArray as Object);
             watch.Stop();
             _elapsedTime = watch.ElapsedMilliseconds;
 
-            Console.WriteLine("Sorting finished");
             _preview = result.Take(1000).ToArray();
 
             _isRunning = false;
